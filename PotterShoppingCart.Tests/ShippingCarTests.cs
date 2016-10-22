@@ -14,10 +14,20 @@ namespace PotterShoppingCart.Tests
     {
 
         private int qty ;
+        private int product;//
         private double price ;
-        private double OrdAmount ;
+        private double orderAmount ;
         private double discountAmount;
         private double newOrdAmount;
+
+        [TestInitialize]
+        public void TestInitialized()
+        {
+            this._target = new ShoppingCart();
+            this._books = new Dictionary<string, int>();
+            
+        }
+
 
 
         public ShippingCarTests()
@@ -30,6 +40,8 @@ namespace PotterShoppingCart.Tests
         }
 
         private TestContext testContextInstance;
+        private ShoppingCart _target;
+        private Dictionary<string, int> _books;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -72,19 +84,37 @@ namespace PotterShoppingCart.Tests
         /// <summary>
         /// 只買一本書,價格應為100元
         /// </summary>
-
         [TestMethod]
         public void TestMethod_oneProduct_oneQty()
         {
             qty = 1;
             price = 100;
-            OrdAmount = qty * price ;
+            orderAmount = qty * price ;
             discountAmount = this.CalculateDiscountAmount(qty, price);
-            newOrdAmount = OrdAmount - discountAmount;
-            Assert.AreEqual(OrdAmount, newOrdAmount);
+            newOrdAmount = orderAmount - discountAmount;
+            Assert.AreEqual(orderAmount, newOrdAmount);
 
         }
 
+        /// <summary>
+        /// 第一集買了一本，第二集也買了一本，價格應為100*2*0.95=190
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_twoProduct_oneoneQty()
+        {
+           //購物車及書的種類要出現囉
+
+        }
+
+
+
+        /// <summary>
+        /// 計算折扣金額
+        /// Calculates the discount amount.
+        /// </summary>
+        /// <param name="qty">The qty.</param>
+        /// <param name="price">The price.</param>
+        /// <returns></returns>
         private double CalculateDiscountAmount(int qty, double price)
         {
             if (qty == 1 )

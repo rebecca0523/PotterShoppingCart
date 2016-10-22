@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShippingCarTests.cs" />
+    <Compile Include="ShoppingCart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="User Story.txt" />
