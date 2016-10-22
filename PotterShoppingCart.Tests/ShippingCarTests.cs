@@ -12,11 +12,21 @@ namespace PotterShoppingCart.Tests
     [TestClass]
     public class ShippingCarTests
     {
+
+        private int qty ;
+        private double price ;
+        private double OrdAmount ;
+        private double discountAmount;
+        private double newOrdAmount;
+
+
         public ShippingCarTests()
         {
             //
             // TODO: Add constructor logic here
             //
+
+
         }
 
         private TestContext testContextInstance;
@@ -59,13 +69,21 @@ namespace PotterShoppingCart.Tests
         //
         #endregion
 
+        /// <summary>
+        /// 只買一本書,價格應為100元
+        /// </summary>
+
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod_oneProduct_oneQty()
         {
-            //
-            //
-            // TODO: Add test logic here
-            //
+            qty = 1;
+            price = 100;
+            OrdAmount = qty * price ;
+            discountAmount = this.CalculateDiscountAmount(qty, price);
+            newOrdAmount = OrdAmount - discountAmount;
+            Assert.AreEqual(OrdAmount, newOrdAmount);
+
         }
+
     }
 }
