@@ -85,5 +85,13 @@ namespace PotterShoppingCart.Tests
 
         }
 
+        private double CalculateDiscountAmount(int qty, double price)
+        {
+            if (qty == 1 )
+            {
+                discountAmount=0 ;
+            }
+            return discountAmount;
+        }
     }
 }
