@@ -93,30 +93,74 @@ namespace PotterShoppingCart.Tests
         /// 第一集買了一本，第二集也買了一本，價格應為100*2*0.95=190
         /// </summary>
         [TestMethod]
-        public void TestMethod_twoProduct_oneoneQty()
+        public void Test_第一集買了一本_第二集也買了一本_價格應為190()
         {
-           //購物車及書的種類要出現囉
-
-            //
-             
+            this._books.Add("first", 1);
+            this._books.Add("second", 1);
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 190;
+            Assert.AreEqual(expected, this.newOrdAmount);
         }
 
 
-
-        /// <summary>
-        /// 計算折扣金額
-        /// Calculates the discount amount.
-        /// </summary>
-        /// <param name="qty">The qty.</param>
-        /// <param name="price">The price.</param>
-        /// <returns></returns>
-        private double CalculateDiscountAmount(int qty, double price)
+        [TestMethod]
+        public void Test_一二三集各買了一本_價格應為270()
         {
-            if (qty == 1 )
-            {
-                discountAmount=0 ;
-            }
-            return discountAmount;
+            this._books.Add("first", 1);
+            this._books.Add("second", 1);
+            this._books.Add("third", 1);
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 270;
+            Assert.AreEqual(expected, this.newOrdAmount);
+        }
+
+        [TestMethod]
+        public void Test_一二三四集各買了一本_價格應為320()
+        {
+            this._books.Add("first", 1);
+            this._books.Add("second", 1);
+            this._books.Add("third", 1);
+            this._books.Add("fourth", 1);
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 320;
+            Assert.AreEqual(expected, this.newOrdAmount);
+        }
+
+        [TestMethod]
+        public void Test_一次買了整套_一二三四五集各買了一本_價格應為375()
+        {
+            this._books.Add("first", 1);
+            this._books.Add("second", 1);
+            this._books.Add("third", 1);
+            this._books.Add("fourth", 1);
+            this._books.Add("fifth", 1);
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 375;
+            Assert.AreEqual(expected, this.newOrdAmount);
+        }
+
+        [TestMethod]
+        public void Test_一套加孤本_一二集各買了一本_第三集買了兩本_價格應為370()
+        {
+            this._books.Add("first", 1);
+            this._books.Add("second", 1);
+            this._books.Add("third", 2);
+
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 370;
+            Assert.AreEqual(expected, this.newOrdAmount);
+        }
+
+        [TestMethod]
+        public void Test_兩套加孤本_第一集買了一本_第二三集各買了兩本_價格應為460()
+        {
+            this._books.Add("first", 1);
+            this._books.Add("second", 2);
+            this._books.Add("third", 2);
+
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            var expected = 460;
+            Assert.AreEqual(expected, this.newOrdAmount);
         }
     }
 }
