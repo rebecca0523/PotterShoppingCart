@@ -32,7 +32,7 @@ namespace PotterShoppingCart.Tests
                 return 0;
             }
 
-            //總共買了不同策數的書
+            //總共買了不同策數的書 6
             var maxBooksCount = books.Max(x => x.Value);
 
             //每策各多少本
@@ -64,7 +64,7 @@ namespace PotterShoppingCart.Tests
                 //(3*100*0.9)+ (2*100*.95
                 newOrdAmount += groupCount * unitBookPrice * discountRatio;
 
-                //?不懂這句的用意
+                //把已計算的書抽離,-- 
                 foreach (var group in groupOfEditionMoreThanOneBook)
                 {
                     unCheckedOutBooks[group.Key]--;
