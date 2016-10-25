@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PotterShoppingCart.Tests;
 
 namespace PotterShoppingCart.Tests
 {
@@ -12,11 +13,8 @@ namespace PotterShoppingCart.Tests
     [TestClass]
     public class ShippingCarTests
     {
-
-        private int qty ;
-        private int product;//
-        private double price ;
-        private double orderAmount ;
+        private ShoppingCart _target;
+        private Dictionary<string, int> _books;
         private double discountAmount;
         private double newOrdAmount;
 
@@ -25,7 +23,7 @@ namespace PotterShoppingCart.Tests
         {
             this._target = new ShoppingCart();
             this._books = new Dictionary<string, int>();
-            
+            this.newOrdAmount = 0;
         }
 
 
@@ -40,9 +38,7 @@ namespace PotterShoppingCart.Tests
         }
 
         private TestContext testContextInstance;
-        private ShoppingCart _target;
-        private Dictionary<string, int> _books;
-
+        
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
@@ -87,13 +83,10 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void TestMethod_oneProduct_oneQty()
         {
-            qty = 1;
-            price = 100;
-            orderAmount = qty * price ;
-            discountAmount = this.CalculateDiscountAmount(qty, price);
-            newOrdAmount = orderAmount - discountAmount;
-            Assert.AreEqual(orderAmount, newOrdAmount);
-
+            var expected = 100;
+            this._books.Add("first", 1);
+            this.newOrdAmount = this._target.CalculateFee(this._books);
+            Assert.AreEqual(expected, this.newOrdAmount);
         }
 
         /// <summary>
